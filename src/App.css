@@ -1,12 +1,13 @@
-.addGetPass {
+.Actions {
   text-align: center;
   position: relative;
   left: 40%;
 }
 
 .addManager {
+  text-align: center;
   position: relative;
-  left: 815px;
+  left: 40%;
   top: 20px;
 }
 

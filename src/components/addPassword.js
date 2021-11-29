@@ -2,14 +2,18 @@ import React from "react";
 import { useState } from "react";
 import { addPassword } from "../util/interact.js";
 import { Button, Col, Form } from "react-bootstrap";
+import cryptoRandomString from 'crypto-random-string';
+var CryptoJS = require("crypto-js");
 
-export default function AddPass() {
+export default function AddPass({ login }) {
 const [password, setPassword] = useState('');
 const [website, setWebsite] = useState('');
 const [id, setId] = useState('');
 
+let ciphertext = CryptoJS.AES.encrypt(password, login).toString();
+
   const addPass = () => {
-    addPassword(password, website, id);
+    addPassword(ciphertext, website, id);
   };
 
   return (

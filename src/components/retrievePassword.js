@@ -2,14 +2,17 @@ import React from "react";
 import { useState } from "react";
 import { retrievePassword } from "../util/interact.js";
 import { Button, Col, Form } from "react-bootstrap";
+var CryptoJS = require("crypto-js");
 
-export default function GetPass() {
+export default function GetPass({ login }) {
 const [website, setWebsite] = useState('');
 const [id, setId] = useState('');
 const [password, setPassword] = useState('Undefined');
 
   const getPass = async () => {
-   setPassword(await retrievePassword(website, id));
+    let ciphertext = await retrievePassword(website, id);
+    var bytes = CryptoJS.AES.decrypt(ciphertext, login);
+    setPassword(bytes.toString(CryptoJS.enc.Utf8));
   };
 
   return (

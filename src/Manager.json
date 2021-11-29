@@ -96,10 +96,45 @@
     "type": "function"
     },
     {
-    "inputs": [],
+    "inputs": [
+        {
+        "internalType": "string",
+        "name": "_plaintextMsg",
+        "type": "string"
+        },
+        {
+        "internalType": "string",
+        "name": "_encryptedMsg",
+        "type": "string"
+        }
+    ],
     "name": "createManager",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+    },
+    {
+    "inputs": [
+        {
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+        }
+    ],
+    "name": "getVerifyText",
+    "outputs": [
+        {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+        },
+        {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+        }
+    ],
+    "stateMutability": "view",
     "type": "function"
     },
     {

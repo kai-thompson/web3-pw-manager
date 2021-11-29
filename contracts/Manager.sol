@@ -1,8 +1,6 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
-import "hardhat/console.sol";
-
 contract Manager {
     // counter used to assign ids to unique managers
     uint256 counter;
@@ -11,6 +9,8 @@ contract Manager {
     struct Account {
         address[] owners;
         address[] members;
+        string verifyPlain;
+        string verifyEncrypted;
     }
 
     // maps an id to an accounts struct
@@ -48,9 +48,12 @@ contract Manager {
     }
 
     // create a unique password manger
-    function createManager() external {
+    function createManager(string calldata _plaintextMsg, string calldata _encryptedMsg) external {
         // counter used to assign a unique id to newly created manager
         counter++;
+
+        accountId[counter].verifyPlain = _plaintextMsg;
+        accountId[counter].verifyEncrypted = _encryptedMsg;
 
         // sets the msg sender as the default owner of the manager
         accountId[counter].owners.push(msg.sender);
@@ -59,6 +62,9 @@ contract Manager {
         emit newManager(msg.sender, counter);
     }
 
+    function getVerifyText(uint256 _id) external view returns(string memory, string memory) {
+        return (accountId[_id].verifyPlain, accountId[_id].verifyEncrypted);
+    }
 
     /**OWNER FUNCTIONS*/
     
@@ -101,6 +107,5 @@ contract Manager {
     // function to return a password to a website specific to a manager id
     function retrievePassword(string calldata _websiteUrl, uint256 _id) external view onlyMembers(_id) returns(string memory){
         return password[string(abi.encodePacked(_websiteUrl, _id))];
-    } 
-
+    }
 }

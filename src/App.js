@@ -1,8 +1,7 @@
 import "./App.css";
 import AddManager from "./components/addManager";
-import AddPass from "./components/addPassword";
-import GetPass from "./components/retrievePassword";
 import Wallet from "./components/wallet";
+import VerifyLogin from "./components/login";
 
 function App() {
   return (
@@ -10,9 +9,8 @@ function App() {
       <div className="wallet">
         <Wallet />
       </div>
-      <div className="addGetPass">
-        <AddPass />
-        <GetPass />
+      <div className="Actions">
+        <VerifyLogin/>
       </div>
       <div className="addManager">
         <AddManager />

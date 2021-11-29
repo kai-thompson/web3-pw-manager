@@ -1,9 +1,10 @@
 import { ethers } from "ethers";
+var CryptoJS = require("crypto-js");
 
 const managerAbi = require("../Manager.json");
-const managerAddress = "0x33ff097b9F0Ca1bd4C6170dC11AD9FA387D11703";
+const managerAddress = "0xb0757c80e0091E95fAD5735c3Af6403469ca8be5";
 
-export const addManager = async () => {
+export const addManager = async (plainText, encryptedText) => {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
 
   const signer = provider.getSigner();
@@ -12,7 +13,7 @@ export const addManager = async () => {
 
   await managerContract
     .connect(signer)
-    .createManager();
+    .createManager(plainText, encryptedText);
 
   managerContract.on("newManager", (addr, id) => {
     console.log(addr + " Created new manager with ID: " + id);
@@ -42,6 +43,24 @@ export const retrievePassword = async (website, id) => {
       .retrievePassword(website, id);
 
     return password;
+};
+
+export const verifyPassword = async (login, id) => {
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const signer = provider.getSigner();
+
+  const managerContract = new ethers.Contract(managerAddress, managerAbi, signer);
+
+  const verifyText = await managerContract
+    .connect(signer)
+    .getVerifyText(id);
+
+  let bytes = CryptoJS.AES.decrypt(verifyText[1], login);
+  let originalText = bytes.toString(CryptoJS.enc.Utf8);
+
+  if(!verifyText[0]) return false;
+
+  return originalText === verifyText[0]
 };
 
 export const connectWallet = async () => {
