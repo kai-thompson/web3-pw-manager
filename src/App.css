@@ -1,0 +1,17 @@
+.addGetPass {
+  text-align: center;
+  position: relative;
+  left: 40%;
+}
+
+.addManager {
+  position: relative;
+  left: 815px;
+  top: 20px;
+}
+
+.wallet {
+  position: relative;
+  top: 10px;
+  left: 90%;
+}

@@ -1,0 +1,147 @@
+[
+    {
+    "anonymous": false,
+    "inputs": [
+        {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_address",
+        "type": "address"
+        },
+        {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_uint",
+        "type": "uint256"
+        }
+    ],
+    "name": "newManager",
+    "type": "event"
+    },
+    {
+    "inputs": [
+        {
+        "internalType": "address",
+        "name": "_address",
+        "type": "address"
+        },
+        {
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+        }
+    ],
+    "name": "addMember",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+    },
+    {
+    "inputs": [
+        {
+        "internalType": "address[]",
+        "name": "_addresses",
+        "type": "address[]"
+        },
+        {
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+        }
+    ],
+    "name": "addMultipleMembers",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+    },
+    {
+    "inputs": [
+        {
+        "internalType": "address",
+        "name": "_address",
+        "type": "address"
+        },
+        {
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+        }
+    ],
+    "name": "addOwner",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+    },
+    {
+    "inputs": [
+        {
+        "internalType": "string",
+        "name": "_password",
+        "type": "string"
+        },
+        {
+        "internalType": "string",
+        "name": "_websiteUrl",
+        "type": "string"
+        },
+        {
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+        }
+    ],
+    "name": "addPassword",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+    },
+    {
+    "inputs": [],
+    "name": "createManager",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+    },
+    {
+    "inputs": [
+        {
+        "internalType": "address",
+        "name": "_address",
+        "type": "address"
+        },
+        {
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+        }
+    ],
+    "name": "removeMember",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+    },
+    {
+    "inputs": [
+        {
+        "internalType": "string",
+        "name": "_websiteUrl",
+        "type": "string"
+        },
+        {
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+        }
+    ],
+    "name": "retrievePassword",
+    "outputs": [
+        {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+        }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+    }
+]
