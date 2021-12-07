@@ -98,6 +98,34 @@
     {
     "inputs": [
         {
+        "internalType": "string[]",
+        "name": "newPasswords",
+        "type": "string[]"
+        },
+        {
+        "internalType": "string",
+        "name": "_plaintextMsg",
+        "type": "string"
+        },
+        {
+        "internalType": "string",
+        "name": "_encryptedMsg",
+        "type": "string"
+        },
+        {
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+        }
+    ],
+    "name": "changeMangerPassword",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+    },
+    {
+    "inputs": [
+        {
         "internalType": "string",
         "name": "_plaintextMsg",
         "type": "string"
@@ -174,6 +202,25 @@
         "internalType": "string",
         "name": "",
         "type": "string"
+        }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+    },
+    {
+    "inputs": [
+        {
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+        }
+    ],
+    "name": "retrieveSiteArr",
+    "outputs": [
+        {
+        "internalType": "string[]",
+        "name": "",
+        "type": "string[]"
         }
     ],
     "stateMutability": "view",

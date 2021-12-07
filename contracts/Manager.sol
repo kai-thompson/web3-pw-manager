@@ -9,6 +9,7 @@ contract Manager {
     struct Account {
         address[] owners;
         address[] members;
+        string[] websiteUrls;
         string verifyPlain;
         string verifyEncrypted;
     }
@@ -72,7 +73,6 @@ contract Manager {
     function addOwner(address _address, uint256 _id) external onlyOwners(_id) {
         accountId[_id].owners.push(_address);
         accountId[counter].members.push(msg.sender);
-
     }
 
     // add member to a manager
@@ -96,10 +96,26 @@ contract Manager {
         }
     }
 
+    function changeMangerPassword(string[] calldata newPasswords, string calldata _plaintextMsg, string calldata _encryptedMsg, uint256 _id) external onlyOwners(_id) {
+        accountId[counter].verifyPlain = _plaintextMsg;
+        accountId[counter].verifyEncrypted = _encryptedMsg;
+
+        for(uint i = 0; i < accountId[_id].websiteUrls.length; i++) {
+            password[accountId[_id].websiteUrls[i]] = newPasswords[i];
+        }
+    }
+
     // add password for a spefic website
     function addPassword(string calldata _password, string calldata _websiteUrl, uint256 _id) external onlyOwners(_id) {
         // setting the password to a specific website and manager id
-        password[string(abi.encodePacked(_websiteUrl, _id))] = _password;
+        string memory passwordId = string(abi.encodePacked(_websiteUrl, _id));
+        require(bytes(password[passwordId]).length == 0, "Password already added");
+        accountId[_id].websiteUrls.push(passwordId);
+        password[passwordId] = _password;
+    }
+    
+    function retrieveSiteArr(uint256 _id) external view onlyOwners(_id) returns(string[] memory) {
+        return accountId[_id].websiteUrls;
     }
 
     /**MEMBER FUNCTIONS*/
